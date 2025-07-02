@@ -31,6 +31,24 @@ pub fn build(b: *std.Build) void {
     // set a preferred release mode, allowing the user to decide how to optimize.
     const optimize = b.standardOptimizeOption(.{});
 
+    // Top-level steps you can invoke on the command line.
+    const build_steps = .{
+        //
+        .static = b.step("static", "Build librot as a static lib"),
+        .shared = b.step("shared", "Build librot as a shared lib"),
+        //
+        .c_static = b.step("c_static", "Build librot as a c static lib"),
+        .c_shared = b.step("c_shared", "Build librot as a c shared lib"),
+        //
+        .@"test" = b.step("test", "Run all tests"),
+        .test_fmt = b.step("test_fmt", "Run formmatter tests"),
+    };
+    _ = build_steps;
+
+    // Build options passed with `-D` flags.
+    const build_options = .{};
+    _ = build_options;
+
     // This creates a "module", which represents a collection of source files alongside
     // some compilation options, such as optimization mode and linked system libraries.
     // Every executable or library we compile will be based on one or more modules.
